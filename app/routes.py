@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, g
 from app.controllers.user_controller import UserController
+from app.repositories.db_connection import DbConnection
 
 
 def create_app():
@@ -22,5 +23,14 @@ def create_app():
     @app.route("/users/<int:user_id>", methods=['DELETE'])
     def delete_user(user_id):
         return user_controller.delete_user(user_id)
+    
+    @app.before_request
+    def open_db_connection():
+        g.db = DbConnection().connect()
+
+    @app.teardown_appcontext
+    def close_db_connection(response):
+        if g.db is not None:
+            DbConnection().disconnect()
     
     return app
