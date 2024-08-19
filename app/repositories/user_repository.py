@@ -2,7 +2,7 @@ from app.models.user import User
 
 
 class UserRepository:
-    def __init__(self):
+    def __init__(self) -> None:
         self._users = {}
 
     def add_user(self, user: User) -> User:

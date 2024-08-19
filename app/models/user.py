@@ -1,5 +1,5 @@
 class User:
-    def __init__(self, user_id: int , name: str, email: str):
+    def __init__(self, user_id: int , name: str, email: str) -> None:
         self._id = user_id
         self._name = name
         self._email = email
@@ -17,7 +17,7 @@ class User:
         self._name = name
 
     @property
-    def email(self):
+    def email(self) -> str:
         return self._email
     
     @email.setter
