@@ -6,10 +6,11 @@ class UserService:
     def __init__(self):
         self._user_repository = UserRepository()
 
-    def create_user(self, name: str, email: str) -> User:
-        user_id = len(self._user_repository._users) + 1
-        new_user = User(user_id=user_id, email=email, name=name)
-        return self._user_repository.add_user(new_user)
+    def register_user(self, request_data) -> None:
+        name = request_data.name
+        email = request_data.email
+        
+        return self._user_repository.create_user(name, email)
     
     def get_user(self, user_id: int) -> User:
         return self._user_repository.get_user(user_id)

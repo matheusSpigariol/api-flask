@@ -6,7 +6,7 @@ from app.schemas.make_request_dto import make_request_dto
 
 class RequestSchema(BaseSchema):
     name = fields.Str(required=True, validate=validate.Length(min = 1))
-    email = fields.Email(required=True, validate=Email())
+    email = fields.Email(required=True)
 
     @post_load
     def make_request_dto(self, data, **kwargs):
