@@ -11,3 +11,6 @@ class DbConnectionInterface:
     
     def fetch_all(self, sql, mapping={}):
         return self._db_coonection.fetch_all(sql, mapping)
+    
+    def execute(self, sql, mapping={}):
+        return self._db_coonection.execute(sql, mapping)

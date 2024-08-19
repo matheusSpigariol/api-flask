@@ -38,6 +38,11 @@ class DbConnection():
         result = cur.fetchone()
 
         return result
+    
+    def execute(self, sql, mapping={}) -> None:
+        cur = g.db.cursor()
+        cur.execute(sql, mapping)
+        result = cur.connection.commit()
 
     def _get_connection(self) -> None:
         self._con = pymysql.connect(

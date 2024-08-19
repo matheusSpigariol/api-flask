@@ -8,15 +8,6 @@ class UserController:
     def __init__(self) -> None:
         self._user_service = UserService()
 
-    def create_user(self) -> Response:
-        data = request.get_json()
-        user = self._user_service.create_user(
-            name=data['name'],
-            email=data['email']
-        )
-
-        return self.make_response(user.to_dict(), 201)
-    
     def get_user(self, user_id) -> Response:
         user = self._user_service.get_user(user_id)
         if user:

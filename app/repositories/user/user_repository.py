@@ -7,6 +7,9 @@ class UserRepository:
         self._users = {},
         self._queries = queries
 
+    def create_user(self, name, email) -> None:
+        return self._queries.add_new_user(name, email)
+    
     def add_user(self, user: User) -> User:
         self._users[user.id] = user
         return user
