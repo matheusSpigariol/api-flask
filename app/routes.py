@@ -1,6 +1,7 @@
 from flask import Flask, g
-from app.controllers.user_controller import UserController
 from app.controllers.create_user import CreateUser
+from app.controllers.get_user import GetUser
+from app.controllers.user_controller import UserController
 from app.repositories.db_connection import DbConnection
 
 
@@ -15,7 +16,7 @@ def create_app():
     
     @app.route('/users/<int:user_id>', methods=['GET'])
     def get_user(user_id):
-        return user_controller.get_user(user_id)
+        return GetUser.get(user_id)
     
     @app.route('/users/<int:user_id>', methods=['PUT'])
     def update_user(user_id):
