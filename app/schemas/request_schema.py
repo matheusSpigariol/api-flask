@@ -1,5 +1,4 @@
 from marshmallow import fields, post_load, validate
-from marshmallow.validate import Email
 
 from app.schemas.base_schema import BaseSchema
 from app.schemas.make_request_dto import make_request_dto

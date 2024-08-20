@@ -12,8 +12,9 @@ class UserService:
         
         return self._user_repository.create_user(name, email)
     
-    def get_user(self, user_id: int) -> User:
-        return self._user_repository.get_user(user_id)
+    def get_user_infos(self, user_id: int) -> dict:
+        user = self._user_repository.get_user(user_id)
+        return user.to_dict()
     
     def update_user(self, user_id: int, name: str, email: str) -> User:
         user = self._user_repository.get_user(user_id)
