@@ -12,7 +12,7 @@ class CreateUser:
 
     def create():
         try:
-            mimetype='application/json'
+            mimetype = 'application/json'
 
             request_body = request.get_json()
             
