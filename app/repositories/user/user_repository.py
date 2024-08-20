@@ -1,3 +1,5 @@
+from app.responses import ResponseCodes
+from app.exception.custom_erros import UserNotFound
 from app.models.user import User
 from app.repositories.user import queries
 
@@ -10,15 +12,14 @@ class UserRepository:
     def create_user(self, name, email) -> None:
         return self._queries.add_new_user(name, email)
     
-    def add_user(self, user: User) -> User:
-        self._users[user.id] = user
-        return user
-    
     def get_user(self, user_id: int) -> User:
         db_user = self._queries.get_user(user_id)
+        if not db_user:
+            raise UserNotFound("User not found", status=ResponseCodes.NOT_FOUND)
+        
         return User(
             user_id=db_user['id'],
-            name=db_user['nome'],
+            name=db_user['name'],
             email=db_user['email']
         )
     
